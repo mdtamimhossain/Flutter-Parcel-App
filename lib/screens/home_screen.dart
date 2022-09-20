@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:parcel_deivery_app/widget/bottom_navigationbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: CustomScrollView(
-        slivers: [
+        slivers: <Widget>[
           SliverAppBar(
             title: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   ))
             ],
             shadowColor: Colors.transparent,
-            expandedHeight: 400,
+            expandedHeight: 440,
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -50,9 +51,9 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 64),
+                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 46),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.values[1],
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -96,15 +97,33 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ]),
                         ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                            alignment: Alignment.center,
+                            height: 49,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.black,
+                            ),
+                            child: TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Track Percel",
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            )),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             )),
           ),
         ],
       ),
+      bottomNavigationBar: BnavigationBar(),
     );
   }
 }
