@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   ))
             ],
             shadowColor: Colors.transparent,
-            expandedHeight: 440,
+            expandedHeight: 426,
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -121,6 +121,122 @@ class HomeScreen extends StatelessWidget {
               ],
             )),
           ),
+          const SliverPadding(padding: EdgeInsets.only(top: 33)),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "My Parcel",
+                      style: Theme.of(context).textTheme.headline3,
+                    )
+                  ]),
+            )
+          ])),
+          SliverList(delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Container(
+                  height: 174,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Theme.of(context).backgroundColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).shadowColor,
+                          spreadRadius: 0,
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        )
+                      ]),
+                  child: Column(children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "00359007738060313786",
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        Container(
+                          height: 31,
+                          width: 78,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'In transit',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        const SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Last update: 3 hours ago',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        SizedBox(
+                          height: 5,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(2.5),
+                            child: LinearProgressIndicator(
+                              value: 0.7,
+                              color:
+                                  Theme.of(context).appBarTheme.backgroundColor,
+                              backgroundColor: const Color(0xFFF8F8F8),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 45,
+                        ),
+                        SizedBox(
+                          width: 60,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Details',
+                                    style:
+                                        Theme.of(context).textTheme.headline4,
+                                  ),
+                                  SvgPicture.asset(
+                                      'assets/images/icon_details.svg')
+                                ],
+                              ),
+                              Container(
+                                height: 1,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ]),
+                ),
+              );
+            },
+          ))
         ],
       ),
       bottomNavigationBar: BnavigationBar(),
