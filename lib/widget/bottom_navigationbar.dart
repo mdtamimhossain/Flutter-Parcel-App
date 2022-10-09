@@ -21,6 +21,7 @@ class _BnavigationBarState extends State<BnavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      iconSize: 24,
       selectedFontSize: 13,
       unselectedFontSize: 13,
       selectedLabelStyle: Theme.of(context).textTheme.headline5,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parcel_deivery_app/screens/home_screen.dart';
+import 'package:parcel_deivery_app/screens/send_parcel_details_screen.dart';
+
+import 'package:parcel_deivery_app/widget/bottom_navigationbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,7 +81,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(),
+      home: const Scaffold(
+        body: HomeScreen(),
+        bottomNavigationBar: BnavigationBar(),
+      ),
     );
   }
 }

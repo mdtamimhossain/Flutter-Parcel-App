@@ -2,52 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:parcel_deivery_app/screens/send_parcel_details_screen.dart';
 import 'package:parcel_deivery_app/widget/bottom_navigationbar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            title: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                "Track Parcel",
-                style: Theme.of(context).textTheme.headline1,
-              ),
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          title: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Track Parcel",
+              style: Theme.of(context).textTheme.headline1,
             ),
-            centerTitle: false,
-            floating: true,
-            snap: false,
-            pinned: true,
-            titleSpacing: 0,
-            actions: [
-              Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image.network(
-                          "https://miro.medium.com/fit/c/1360/1360/2*NDZrabY3uLA-1MM3K1MexQ.png"),
-                    ),
-                  ))
-            ],
-            shadowColor: Colors.transparent,
-            expandedHeight: 426,
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(16),
-              ),
+          ),
+          centerTitle: false,
+          floating: true,
+          snap: false,
+          pinned: true,
+          titleSpacing: 0,
+          actions: [
+            Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: CircleAvatar(
+                  child: ClipOval(
+                    child: Image.network(
+                        "https://miro.medium.com/fit/c/1360/1360/2*NDZrabY3uLA-1MM3K1MexQ.png"),
+                  ),
+                ))
+          ],
+          shadowColor: Colors.transparent,
+          expandedHeight: 426,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(16),
             ),
-            flexibleSpace: FlexibleSpaceBar(
-                background: Column(
+          ),
+          flexibleSpace: FlexibleSpaceBar(
+            background: Column(
               children: [
                 Expanded(
                   child: Padding(
@@ -119,44 +124,45 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )),
+            ),
           ),
-          const SliverPadding(padding: EdgeInsets.only(top: 33)),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
+        ),
+        const SliverPadding(padding: EdgeInsets.only(top: 33)),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 24),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                "My Parcel",
+                style: Theme.of(context).textTheme.headline3,
+              )
+            ]),
+          )
+        ])),
+        SliverList(delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Container(
+                height: 174,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Theme.of(context).backgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).shadowColor,
+                        spreadRadius: 0,
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      )
+                    ]),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "My Parcel",
-                      style: Theme.of(context).textTheme.headline3,
-                    )
-                  ]),
-            )
-          ])),
-          SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                child: Container(
-                  height: 174,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Theme.of(context).backgroundColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).shadowColor,
-                          spreadRadius: 0,
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        )
-                      ]),
-                  child: Column(children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -166,80 +172,83 @@ class HomeScreen extends StatelessWidget {
                         Container(
                           height: 31,
                           width: 78,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg"),
-                            ),
-                          ),
-                        ),
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg"))),
+                        )
                       ],
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'In transit',
-                          style: Theme.of(context).textTheme.headline4,
+                          "In transit",
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         const SizedBox(
-                          height: 3,
+                          height: 4,
                         ),
                         Text(
-                          'Last update: 3 hours ago',
+                          "Last update: 3 hours ago",
                           style: Theme.of(context).textTheme.headline6,
                         ),
                         const SizedBox(
-                          height: 12,
+                          height: 10,
                         ),
                         SizedBox(
                           height: 5,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(2.5),
                             child: LinearProgressIndicator(
-                              value: 0.7,
-                              color:
-                                  Theme.of(context).appBarTheme.backgroundColor,
-                              backgroundColor: const Color(0xFFF8F8F8),
-                            ),
+                                value: .7,
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .backgroundColor,
+                                backgroundColor: const Color(0xFFF8F8F8)),
                           ),
                         ),
                         const SizedBox(
-                          height: 45,
+                          height: 25,
                         ),
-                        SizedBox(
-                          width: 60,
-                          child: Column(
+                        InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(7)),
+                                ),
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) => const Buildsheet());
+                          },
+                          child: Row(
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Details',
-                                    style:
-                                        Theme.of(context).textTheme.headline4,
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/images/icon_details.svg')
-                                ],
+                              Text(
+                                "Details",
+                                style: Theme.of(context).textTheme.headline4,
                               ),
-                              Container(
-                                height: 1,
-                                color: Colors.black,
-                              ),
+                              SvgPicture.asset("assets/images/icon_details.svg")
                             ],
                           ),
+                        ),
+                        Container(
+                          width: 60,
+                          height: 1,
+                          color: Colors.black,
                         )
                       ],
                     )
-                  ]),
+                  ],
                 ),
-              );
-            },
-          ))
-        ],
-      ),
-      bottomNavigationBar: BnavigationBar(),
+              ),
+            );
+          },
+        )),
+      ],
     );
   }
 }
